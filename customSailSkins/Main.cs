@@ -12,7 +12,7 @@ namespace customSailSkins
     [Mod]
     public class Main
     {
-        public static string texturesFilePath = "/Managed/Mods/Assets/FlagReplacement/";
+        public static string texturesFilePath = "/Managed/Mods/Assets/customSails/";
         static Dictionary<string, Texture2D> sailSkins = new Dictionary<string, Texture2D>();
         static Texture defaultSails;
         static bool setDefault = false;
@@ -36,7 +36,7 @@ namespace customSailSkins
             {
                 Directory.CreateDirectory(Application.dataPath + texturesFilePath);
                 StreamWriter streamWriter = new StreamWriter(Application.dataPath + texturesFilePath + "steamID.txt");
-                streamWriter.WriteLine("STEAMID64HERE=FLAGNAMEHERE");
+                streamWriter.WriteLine("STEAMID64HERE=SAILNAMEHERE");
                 streamWriter.Close();
             }
 
