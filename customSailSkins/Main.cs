@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Harmony;
 using BWModLoader;
 using UnityEngine;
@@ -12,10 +10,11 @@ namespace customSailSkins
     [Mod]
     public class Main
     {
-        public static string texturesFilePath = "/Managed/Mods/Assets/customSails/";
+        static string texturesFilePath = "/Managed/Mods/Assets/customSails/";
         static Dictionary<string, Texture2D> sailSkins = new Dictionary<string, Texture2D>();
         static Texture defaultSails;
         static bool setDefault = false;
+        static string configFilePath = "/Managed/Mods/Configs/customSailSkins.cfg";
         static void debugLog(string message)
         {
             //Just easier to type than Log.logger.Log
@@ -32,10 +31,10 @@ namespace customSailSkins
 
         void initFiles()
         {
-            if (!File.Exists(Application.dataPath + texturesFilePath + "steamID.txt"))
+            if (!File.Exists(Application.dataPath + configFilePath))
             {
-                Directory.CreateDirectory(Application.dataPath + texturesFilePath);
-                StreamWriter streamWriter = new StreamWriter(Application.dataPath + texturesFilePath + "steamID.txt");
+                Directory.CreateDirectory(Application.dataPath + "/Managed/Mods/Configs/");
+                StreamWriter streamWriter = new StreamWriter(Application.dataPath + configFilePath);
                 streamWriter.WriteLine("STEAMID64HERE=SAILNAMEHERE");
                 streamWriter.Close();
             }
@@ -45,7 +44,7 @@ namespace customSailSkins
         void initSails()
         {
             Texture2D sail;
-            string[] array = File.ReadAllLines(Application.dataPath + texturesFilePath + "steamID.txt");
+            string[] array = File.ReadAllLines(Application.dataPath + configFilePath);
             for (int i = 0; i <= array.Length; i++)
             {
                 string[] contents = array[i].Split('=');
