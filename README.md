@@ -29,7 +29,7 @@ To assign custom sails, you do the following:
 1. Place the sail skins you wish to use **(Native resolution is 2048x2048)**, inside **/Managed/Mods/Assets/customSails/** .
    - You must use a **.png** image.
 
-2. Inside the auto-generated **steamID.txt** file, inside **/Managed/Mods/Assets/customSails/** you enter the steamID's you wish to link to specific users.
+2. Inside the auto-generated **customSailSkins.cfg** file, inside **/Managed/Mods/Configs/** you enter the steamID's you wish to link to specific users.
 Example:
 ```
 768522222333=Viking
@@ -41,9 +41,9 @@ Example:
 
 **/Managed/Mods/Assets/customSails/Viking.png**
 **/Managed/Mods/Assets/customSails/Black.png**
-**/Managed/Mods/Assets/customSails/steamID.txt**
+**/Managed/Mods/Configs/customSailSkins.cfg**
 
-Where **steamID.txt** contains:
+Where **customSailSkins.cfg** contains:
 ```text
 768522222333=Viking
 768493028463=Black
