@@ -8,7 +8,7 @@ using UnityEngine;
 namespace customSailSkins
 {
     [Mod]
-    public class Main
+    public class Main : MonoBehaviour
     {
         static string texturesFilePath = "/Managed/Mods/Assets/customSails/";
         static Dictionary<string, Texture2D> sailSkins = new Dictionary<string, Texture2D>();
