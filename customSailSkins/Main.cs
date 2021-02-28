@@ -27,6 +27,8 @@ namespace customSailSkins
             //Setup harmony patching
             HarmonyInstance harmony = HarmonyInstance.Create("com.github.archie");
             harmony.PatchAll();
+
+            initFiles();
         }
 
         void initFiles()
@@ -37,6 +39,11 @@ namespace customSailSkins
                 StreamWriter streamWriter = new StreamWriter(Application.dataPath + configFilePath);
                 streamWriter.WriteLine("STEAMID64HERE=SAILNAMEHERE");
                 streamWriter.Close();
+            }
+
+            if (!Directory.Exists(Application.dataPath + texturesFilePath))
+            {
+                Directory.CreateDirectory(Application.dataPath + texturesFilePath);
             }
 
             initSails();
@@ -60,7 +67,7 @@ namespace customSailSkins
                 byte[] data = File.ReadAllBytes(Application.dataPath + texturesFilePath + texName + ".png");
                 Texture2D tex = new Texture2D(1024, 512, TextureFormat.RGB24, false);
                 tex.LoadImage(data);
-                tex.name = "validFlag";
+                tex.name = texName;
                 return tex;
             }
             catch (Exception e)
@@ -85,7 +92,6 @@ namespace customSailSkins
                     if (shipTransf)
                     {
                         int teamNum = int.Parse(shipTransf.name.Split('m')[1]);
-
                         string steamID = GameMode.Instance.teamCaptains[teamNum - 1].steamID.ToString();
                         if (!setDefault)
                         {
@@ -94,7 +100,10 @@ namespace customSailSkins
                         }
                         if (sailSkins.TryGetValue(steamID, out Texture2D newTex))
                         {
-                            __instance.GetComponent<Renderer>().material.mainTexture = newTex;
+                            if (newTex.name != "NOFLAG")
+                            {
+                                __instance.GetComponent<Renderer>().material.mainTexture = newTex;
+                            }
                         }
                         else
                         {
