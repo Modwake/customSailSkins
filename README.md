@@ -40,7 +40,9 @@ Example:
 3. When complete you should have a folder structure like this (assuming 2 sails assigned):
 
 **/Managed/Mods/Assets/customSails/Viking.png**
+
 **/Managed/Mods/Assets/customSails/Black.png**
+
 **/Managed/Mods/Configs/customSailSkins.cfg**
 
 Where **customSailSkins.cfg** contains:
